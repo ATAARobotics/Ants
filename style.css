@@ -17,6 +17,13 @@
   }
 }
 
+.icon {
+  width: 2.5em;
+  float: left;
+  margin-right: 0.5em;
+  border-radius: 0.5em;
+}
+
 header {
   background-color: var(--header-colour);
   padding: 0.5em 1.5em;
@@ -49,9 +56,9 @@ input.action:focus {
 }
 
 canvas {
-  width: calc( 80% - 0.6em );
+  width: calc( 90% - 0.6em );
   height: calc( ( 100vh - 4em ) * 0.8 - 0.6em );
-  margin: calc( ( 100vh - 4em ) * 0.1  - 0.6em ) 10vw;
+  margin: calc( ( 100vh - 4em ) * 0.1  - 0.6em ) 5vw;
   border-color: var(--fg-colour);
   border-width: 0.3em;
   border-radius: 1em;
