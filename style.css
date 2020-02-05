@@ -1,0 +1,67 @@
+:root {
+  --header-colour: #373c41;
+  --shadow-colour: #202028C0;
+  --bg-colour: #4b545e;
+  --fg-colour: #eeeeee;
+  --hover-colour: #10102040;
+  --active-colour: #ffffff20;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --header-colour: #cbd0d6;
+    --shadow-colour: #202028C0;
+    --bg-colour: #a6b0bc;
+    --fg-colour: #303040;
+    --hover-colour: #ffffff20;
+    --active-colour: #10102020;
+  }
+}
+
+header {
+  background-color: var(--header-colour);
+  padding: 0.5em 1.5em;
+  box-shadow: 0 0.2em 2.5em var(--shadow-colour);
+}
+
+.action {
+  background: transparent;
+  border-color: var(--fg-colour);
+  border-width: 0.2em;
+  border-radius: 0.5em;
+  border-style: solid;
+  padding: 0.8em;
+  outline: none;
+  margin: 0 0.5em;
+  color: var(--fg-colour);
+}
+.action:hover {
+  background: var(--hover-colour);
+}
+button.action:active {
+  background: var(--active-colour);
+}
+input.action:focus {
+  background: var(--active-colour);
+}
+
+.right {
+  float: right;
+}
+
+canvas {
+  width: calc( 80% - 0.6em );
+  height: calc( ( 100vh - 4em ) * 0.8 - 0.6em );
+  margin: calc( ( 100vh - 4em ) * 0.1  - 0.6em ) 10vw;
+  border-color: var(--fg-colour);
+  border-width: 0.3em;
+  border-radius: 1em;
+  border-style: solid;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-colour);
+}
