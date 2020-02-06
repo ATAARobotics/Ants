@@ -33,4 +33,9 @@ window.addEventListener("load", () => {
     }
   });
   canvas.addEventListener("wheel", ev => vp.zoom(new Vec2(ev.clientX-canvas.offsetLeft, ev.clientY-canvas.offsetTop), 2**(-ev.deltaY/100)));
+  document.getElementById("recenter").addEventListener("click", () => {
+    vp.size = Math.min(canvas.offsetWidth, canvas.offsetHeight*2);
+    vp.pos.x = 0;
+    vp.pos.y = 0;
+  });
 });
