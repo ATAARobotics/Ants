@@ -12,10 +12,25 @@
       <img class="icon" src="/icon.png" alt="ANTS Icon">
       <button class="action" type="button" id="new">New Plan</button>
       <input class="action" type="text" value="Unnamed" placeholder="Enter Plan Name" id="project-name">
+      <select class="action" label="Output Format">
+        <optgroup label="Output Format"></optgroup>
+        <optgroup label="SWAT Bots 5015">
+          <option value="swat2020" selected=true>SWAT 2020</option>
+        </optgroup>
+        <optgroup label="ATA 4334">
+          <option value="ata2020" selected=true>ATA 2020</option>
+        </optgroup>
+      </select>
       <button class="action" type="button" id="export">Save Plan</button>
       <button class="action" type="button" id="import">Load Plan</button>
       <button class="action right" type="button" id="preview">Preview Plan</button>
     </header>
     <canvas id="canvas">Javascript is not enabled.</canvas>
+    <span id="recenter" class="svg svg-locate" src="/crosshair.svg"></span>
+    <footer>
+      <a href="/readme.md">Readme</a>
+      <a href="/license.md">License</a>
+      <span class="right">© 2020 ATAA Robotics</span>
+    </footer>
   </body>
 </html>

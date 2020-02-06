@@ -26,6 +26,11 @@ window.addEventListener("load", () => {
     canvasContext.drawImage(field, pos.x-size/2, pos.y-size/4, size, size/2);
     vp.drag(mouseState);
   }, 16);
-  projectName.addEventListener("keyup", () => document.getElementById("title").innerText = `ANTS · ${projectName.value}`);
+  projectName.addEventListener("keyup", () => document.getElementById("title").innerText = `ANTS · ${projectName.value || "Unnamed"}`);
+  projectName.addEventListener("blur", () => {
+    if (projectName.value.trim() === "") {
+      projectName.value = "Unnamed";
+    }
+  });
   canvas.addEventListener("wheel", ev => vp.zoom(new Vec2(ev.clientX-canvas.offsetLeft, ev.clientY-canvas.offsetTop), 2**(-ev.deltaY/100)));
 });
