@@ -14,11 +14,12 @@
       <input class="action" type="text" value="Unnamed" placeholder="Enter Plan Name" id="project-name">
       <select class="action" label="Output Format">
         <optgroup label="Output Format"></optgroup>
+        <option value="save" selected=true>ANTS Project</option>
         <optgroup label="SWAT Bots 5015">
-          <option value="swat2020" selected=true>SWAT 2020</option>
+          <option value="swat2020">SWAT 2020</option>
         </optgroup>
         <optgroup label="ATA 4334">
-          <option value="ata2020" selected=true>ATA 2020</option>
+          <option value="ata2020">ATA 2020</option>
         </optgroup>
       </select>
       <button class="action" type="button" id="export">Save Plan</button>
@@ -28,8 +29,9 @@
     <canvas id="canvas">Javascript is not enabled.</canvas>
     <span id="recenter" class="svg svg-locate" src="/crosshair.svg"></span>
     <footer>
-      <a href="/readme.md">Readme</a>
-      <a href="/license.md">License</a>
+      <a href="/readme.md">Readme</a> |
+      <a href="/license.md">License</a> |
+      <a href="/todo.md">Todo</a>
       <span class="right">© 2020 ATAA Robotics</span>
     </footer>
   </body>
