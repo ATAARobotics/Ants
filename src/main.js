@@ -3,7 +3,9 @@
 import { Viewport } from "/src/viewport.js";
 import { Vec2 } from "/src/vec2.js";
 import { MouseState } from "/src/mouse.js";
-import { Path } from "/src/path.js";
+import { Project } from "/src/project.js";
+
+/// Non-project specific stuff goes in this file, and a basic wrapper for easy canvas use.
 
 const field = new Image();
 field.src = "/field.png";
@@ -16,11 +18,8 @@ window.addEventListener("load", () => {
   const canvasSize = new Vec2(0, 0);
   const vp = new Viewport(canvasSize);
   const mouseState = new MouseState(canvas);
+  let project = new Project();
   vp.size = Math.min(canvas.offsetWidth, canvas.offsetHeight*2);
-  const testPath = new Path(canvasContext, vp, 0, 0);
-  testPath.addNode(1, 0);
-  testPath.addNode(1, 1);
-  testPath.addNode(0, 1);
   setInterval(() => {
     canvasSize.x = canvas.offsetWidth;
     canvasSize.y = canvas.offsetHeight;
@@ -30,7 +29,7 @@ window.addEventListener("load", () => {
     const size = vp.size;
     canvasContext.drawImage(field, pos.x-size/2, pos.y-size/4, size, size/2);
     vp.drag(mouseState);
-    testPath.draw();
+    project.draw();
   }, 16);
   projectName.addEventListener("keyup", () => document.getElementById("title").innerText = `ANTS · ${projectName.value || "Unnamed"}`);
   projectName.addEventListener("blur", () => {
