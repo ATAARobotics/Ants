@@ -18,7 +18,7 @@ export class MouseState {
         this.currentHeld[ev.button] = new MouseButtonState(ev.clientX, ev.clientY, true);
       }
     });
-    this.upListener = canvas.addEventListener("mouseup", ev => {
+    this.upListener = window.addEventListener("mouseup", ev => {
       if (ev.button >= 0 && ev.button <= 2) {
         this.currentHeld[ev.button] = new MouseButtonState(ev.clientX, ev.clientY, false);
       }
