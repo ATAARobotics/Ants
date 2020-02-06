@@ -6,13 +6,12 @@ export class Viewport {
   constructor() {
     this.x = 0;
     this.y = 0;
-    this.width = 100;
-    this.height = 100;
+    this.size = 1;
   }
   toViewport(pos) {
-    return new Vec2(pos.x/innerWidth*this.width+this.x, pos.y/innerHeight*this.height+this.y);
+    return new Vec2((pos.x-innerWidth/2)/this.size+this.x, (innerHeight/2-pos.y)/this.size+this.y);
   }
   fromViewport(pos) {
-    return new Vec2((pos.x-this.x)/this.width*innerWidth, (pos.y-this.y)/this.height*innerHeight);
+    return new Vec2((pos.x-this.x)*this.size+innerWidth/2, innerHeight/2-(pos.y-this.y)*this.size);
   }
 }
