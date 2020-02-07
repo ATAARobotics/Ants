@@ -37,7 +37,7 @@
         {"types": ["teams"], "min": 0, "max": 1}
       ],
       "hidden": false
-    },
+    }
   ],
   "// The list of units(nouns) available to write to the file:": null,
   "units": [
@@ -85,21 +85,21 @@
       "type": "number",
       "measurement": "rotation",
       "suffix": "r",
-      "ratio": 3.1415926535897932,
+      "ratio": 3.1415926535897932
     },
     {
       "name": "gradians",
       "type": "number",
       "measurement": "rotation",
       "suffix": "g",
-      "ratio": 300,
+      "ratio": 300
     },
     {
       "name": "turns",
       "type": "number",
       "measurement": "rotation",
       "suffix": "t",
-      "ratio": 1.0,
+      "ratio": 1.0
     },
     {
       "name": "teams",
