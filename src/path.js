@@ -5,8 +5,8 @@ import { Vec2 } from "/src/vec2.js";
 const nodeSize = 10;
 
 class PathNode {
-  constructor(x, y, r) {
-    this.position = new Vec2(x, y);
+  constructor(pos, r) {
+    this.position = new Vec2(pos.x, pos.y);
     this.rotation = r;
     this.actions = [];
     this.tail = true;
@@ -14,26 +14,30 @@ class PathNode {
 }
 
 export class Path {
-  constructor(context, vp, x, y) {
+  constructor(context, vp, pos) {
     this.canvasContext = context;
     this.viewport = vp;
-    this.nodes = [new PathNode(x, y, 0)];
+    this.nodes = [new PathNode(pos, 0)];
   }
-  addNode(x, y) {
+  addNode(pos) {
     const lastNode = this.nodes[this.nodes.length-1];
     lastNode.tail = false;
-    const rotation = Math.atan2(lastNode.position.y-y, lastNode.position.x-x);
-    const newNode = new PathNode(x, y, rotation);
+    const rotation = Math.atan2(lastNode.position.y-pos.y, lastNode.position.x-pos.x);
+    const newNode = new PathNode(pos, rotation);
     this.nodes.push(newNode);
     return newNode;
   }
-  selectNode(x, y) {
+  selectNode(pos) {
+    let closest = false;
+    let closestDist = nodeSize;
     for (const node of this.nodes) {
-      if (Math.sqrt((node.position.x-x)**2 + (node.position.y-y)**2) < nodeSize) {
-        return node;
+      const dist = Math.sqrt((node.position.x-pos.x)**2 + (node.position.y-pos.y)**2);
+      if (dist < closestDist) {
+        closest = node;
+        closestDist = dist;
       }
     }
-    return false;
+    return closest;
   }
   draw() {
     let first = true;

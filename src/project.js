@@ -10,14 +10,13 @@ export class Project {
     this.mouseState = mouseState;
     this.paths = [];
     this.selected = false;
-  }
-  draw() {
-    if (this.mouseState.held[0].held || this.mouseState.held[2].held) {
+
+    this.mouseState.onDown(() => {
       if (!this.selected) {
         let snappedNode = false;
         let snappedPath = false;
         for (const path of this.paths) {
-          const node = path.selectNode();
+          const node = path.selectNode(this.mouseState.position);
           if (node) {
             snappedNode = node;
             snappedPath = path;
@@ -29,15 +28,19 @@ export class Project {
           if (snappedNode && snappedNode.tail) {
             selectedPath = snappedPath;
           } else {
-            selectedPath = new Path(this.canvasContext, this.viewport, this.mouseState.position.x, this.mouseState.position.y);
+            selectedPath = new Path(this.canvasContext, this.viewport, this.mouseState.position);
             this.paths.push(selectedPath);
           }
-          this.selected = selectedPath.addNode(this.mouseState.position.x, this.mouseState.position.y);
+          this.selected = selectedPath.addNode(this.mouseState.position);
         } else if (this.mouseState.held[2].held) {
 
         }
+      } else {
+        this.selected = false;
       }
-    }
+    });
+  }
+  draw() {
     if (this.selected) {
       this.selected.position.x = this.mouseState.position.x;
       this.selected.position.y = this.mouseState.position.y;
