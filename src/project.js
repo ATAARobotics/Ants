@@ -16,7 +16,7 @@ export class Project {
         let snappedNode = false;
         let snappedPath = false;
         for (const path of this.paths) {
-          const node = path.selectNode(this.mouseState.position);
+          const node = path.selectNode(this.mouseState.position, true);
           if (node) {
             snappedNode = node;
             snappedPath = path;

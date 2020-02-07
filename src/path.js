@@ -2,7 +2,7 @@
 
 import { Vec2 } from "/src/vec2.js";
 
-const nodeSize = 10;
+const nodeSize = 0.1;
 
 class PathNode {
   constructor(pos, r) {
@@ -27,12 +27,12 @@ export class Path {
     this.nodes.push(newNode);
     return newNode;
   }
-  selectNode(pos) {
+  selectNode(pos, tail) {
     let closest = false;
     let closestDist = nodeSize;
     for (const node of this.nodes) {
       const dist = Math.sqrt((node.position.x-pos.x)**2 + (node.position.y-pos.y)**2);
-      if (dist < closestDist) {
+      if (dist < closestDist && (!tail || node.tail)) {
         closest = node;
         closestDist = dist;
       }
