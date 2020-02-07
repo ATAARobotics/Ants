@@ -1,0 +1,110 @@
+{
+  "extension": ".auto", "// The extension to add to the file.": null,
+  "version": "5015-2020-rev1", "// The first line of the file, if empty no newline will be added.": null,
+  "commandPrefix": "", "// The prefix before any command in the file.": null,
+  "commandSuffix": "\n", "// The suffix after any command in the file.": null,
+  "commandSeparator": "", "// The separator in between any two commands in the file.": null,
+  "verbNounSeparator": " ", "// The string to insert between a verb and the first noun, not added if no nouns.": null,
+  "verbSeparator": ",", "// The string to insert between consecutive verbs.": null,
+  "driveForwardVerb": "m", "// The verb to use to drive the robot forward.": null,
+  "driveBackwardVerb": "m", "// The verb to use to drive the robot backward.": null,
+  "driveBackwardNegitive": true, "// Whether the distance should be inverted when driving backwards.": null,
+  "rotateVerb": "r", "// The verb to use to rotate the robot.": null,
+  "relativeRotate": false, "// Whether the robot expects relative rotations.": null,
+  "reverseRotate": false, "// Whether the robot expects counter-clockwise rotations.": null,
+  "// The list of verbs available to write to the file:": null,
+  "verbs": [
+    {
+      "fileCommand": "m", "// The actual string to write to the file": null,
+      "// The list of parameter possibilities for the command, in this case it only excepts exactly one 'feet'-type number:": null,
+      "parameters": [
+        {"types": ["feet"], "min": 1, "max": 1}
+      ],
+      "hidden": true, "// Whether to allow the user to select this option.": null
+    },
+    {
+      "fileCommand": "r",
+      "// The first parameter is the rotation to point in (absolute).": null,
+      "parameters": [
+        {"types": ["degrees"], "min": 1, "max": 1}
+      ],
+      "hidden": false
+    },
+    {
+      "fileCommand": "s",
+      "// The first parameter is the hole on the field to aim for, defaults to the closest one.": null,
+      "parameters": [
+        {"types": ["teams"], "min": 0, "max": 1}
+      ],
+      "hidden": false
+    },
+  ],
+  "// The list of units(nouns) available to write to the file:": null,
+  "units": [
+    {
+      "name": "centimeter", "// The internal name of this unit.": null,
+      "type": "number", "// The type, can be: number, string, enum, boolean": null,
+      "measurement": "distance", "// The thing this unit is measuring.": null,
+      "suffix": "cm", "// The suffix to append to the end of numbers with this unit.": null,
+      "ratio": 1.0, "// The ratio between this unit and other units of the same measurement.": null
+    },
+    {
+      "name": "inch",
+      "type": "number",
+      "measurement": "distance",
+      "suffix": "\"",
+      "ratio": 2.54
+    },
+    {
+      "name": "feet",
+      "type": "number",
+      "measurement": "distance",
+      "suffix": "'",
+      "ratio": 30.48,
+      "filePrefix": "", "// The string to prepend to any units in an output file, if missing, units will be converted to another that has the same measurement.": null,
+      "fileSuffix": "", "// The string to append to any units in an output file, if missing, units will be converted to another that has the same measurement.": null
+    },
+    {
+      "name": "meter",
+      "type": "number",
+      "measurement": "distance",
+      "suffix": "m",
+      "ratio": 100.0
+    },
+    {
+      "name": "degrees",
+      "type": "number",
+      "measurement": "rotation",
+      "suffix": "d",
+      "ratio": 360,
+      "filePrefix": "",
+      "fileSuffix": ""
+    },
+    {
+      "name": "radians",
+      "type": "number",
+      "measurement": "rotation",
+      "suffix": "r",
+      "ratio": 3.1415926535897932,
+    },
+    {
+      "name": "gradians",
+      "type": "number",
+      "measurement": "rotation",
+      "suffix": "g",
+      "ratio": 300,
+    },
+    {
+      "name": "turns",
+      "type": "number",
+      "measurement": "rotation",
+      "suffix": "t",
+      "ratio": 1.0,
+    },
+    {
+      "name": "teams",
+      "type": "enum",
+      "options": ["blue", "red"]
+    }
+  ]
+}
