@@ -6,9 +6,10 @@ const nodeSize = 10;
 
 class PathNode {
   constructor(x, y, r) {
-    this.pos = new Vec2(x, y);
+    this.position = new Vec2(x, y);
     this.rotation = r;
     this.actions = [];
+    this.tail = true;
   }
 }
 
@@ -19,21 +20,25 @@ export class Path {
     this.nodes = [new PathNode(x, y, 0)];
   }
   addNode(x, y) {
-    const lastPos = this.nodes[this.nodes.length-1].pos;
-    const rotation = Math.atan2(lastPos.y-y, lastPos.x-x);
-    this.nodes.push(new PathNode(x, y, rotation));
+    const lastNode = this.nodes[this.nodes.length-1];
+    lastNode.tail = false;
+    const rotation = Math.atan2(lastNode.position.y-y, lastNode.position.x-x);
+    const newNode = new PathNode(x, y, rotation);
+    this.nodes.push(newNode);
+    return newNode;
   }
   selectNode(x, y) {
     for (const node of this.nodes) {
-      if (Math.sqrt((node.pos.x-x)**2 + (node.pos.y-y)**2) < nodeSize) {
-
+      if (Math.sqrt((node.position.x-x)**2 + (node.position.y-y)**2) < nodeSize) {
+        return node;
       }
     }
+    return false;
   }
   draw() {
     let first = true;
     for (const node of this.nodes) {
-      const pos = this.viewport.fromViewport(new Vec2(node.pos.x, node.pos.y));
+      const pos = this.viewport.fromViewport(node.position);
       if (first) {
         this.canvasContext.moveTo(pos.x, pos.y);
         first = false;
