@@ -26,7 +26,10 @@ export class MouseState {
         this.held[ev.button] = new MouseButtonState(ev.clientX, ev.clientY, false);
       }
     });
-    this.moveListener = canvas.addEventListener("mousemove", ev => {
+    this.moveListener = window.addEventListener("mousemove", ev => {
+      this.position = vp.toViewport(new Vec2(ev.clientX-canvas.offsetLeft, ev.clientY-canvas.offsetTop));
+    });
+    this.moveListener = window.addEventListener("wheel", ev => { // Move the mouse if scrolling, as it zooms the screen.
       this.position = vp.toViewport(new Vec2(ev.clientX-canvas.offsetLeft, ev.clientY-canvas.offsetTop));
     });
     this.contextMenuStopper = canvas.addEventListener("contextmenu", ev => {
