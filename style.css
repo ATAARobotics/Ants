@@ -3,8 +3,11 @@
   --shadow-colour: #202028C0;
   --bg-colour: #4b545e;
   --fg-colour: #eeeeee;
-  --hover-colour: #10102040;
-  --active-colour: #ffffff20;
+  --hover-bg-colour: #10102040;
+  --active-bg-colour: #ffffff20;
+  --hover-fg-colour: #c0c0c8;
+  --active-fg-colour: #9090a0;
+  --link-colour: #ff00ff;
 }
 @media (prefers-color-scheme: light) {
   :root {
@@ -12,8 +15,11 @@
     --shadow-colour: #202028C0;
     --bg-colour: #a6b0bc;
     --fg-colour: #303040;
-    --hover-colour: #ffffff20;
-    --active-colour: #10102020;
+    --hover-bg-colour: #ffffff20;
+    --active-bg-colour: #10102020;
+    --hover-fg-colour: #eeeeee;
+    --active-fg-colour: #484860;
+    --link-colour: #505058;
   }
 }
 
@@ -42,13 +48,16 @@ header {
   color: var(--fg-colour);
 }
 .action:hover {
-  background: var(--hover-colour);
+  background: var(--hover-bg-colour);
+  border-color: var(--hover-fg-colour);
 }
 button.action:active {
-  background: var(--active-colour);
+  background: var(--active-bg-colour);
+  border-color: var(--fg-colour);
 }
 input.action:focus {
-  background: var(--active-colour);
+  background: var(--active-bg-colour);
+  border-color: var(--fg-colour);
 }
 
 .right {
@@ -71,4 +80,47 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-colour);
+}
+
+#recenter {
+  position: fixed;
+  left: calc( 5vw + 1em );
+  bottom: calc( ( 100vh - 4em ) * 0.1 + 1.9em );
+  -webkit-mask: url("/locate.svg");
+  mask: url("/locate.svg");
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  width: 3em;
+  height: 3em;
+  background-color: var(--fg-colour);
+}
+#recenter:hover {
+  background-color: var(--hover-fg-colour);
+}
+#recenter:active {
+  background-color: var(--active-fg-colour);
+}
+
+.svg {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  background: black;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.8em;
+  color: var(--fg-colour);
+}
+
+a {
+  color: var(--link-colour);
+  text-decoration: none;
+  font-style: italic;
+}
+a:hover {
+  color: var(--hover-fg-colour);
 }
