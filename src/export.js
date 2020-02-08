@@ -194,22 +194,26 @@ export function registerButtons(project, updateProject) {
   });
   document.getElementById("import").addEventListener("click", () => {
     upload(file => {
-      const projectObject = JSON.parse(file);
-      project = new Project(project.mouseState, project.viewport);
-      for (const path of projectObject) {
-        const newPath = new Path(path.nodes[0].position, path.name);
-        let first = true;
-        for (const node of path.nodes) {
-          if (!first) {
-            const newNode = newPath.addNode(node.position);
-            newNode.rotation = node.rotation;
-            // TODO: Actions
+      try {
+        const projectObject = JSON.parse(file);
+        project = new Project(project.mouseState, project.viewport);
+        for (const path of projectObject) {
+          const newPath = new Path(path.nodes[0].position, path.name);
+          let first = true;
+          for (const node of path.nodes) {
+            if (!first) {
+              const newNode = newPath.addNode(node.position);
+              newNode.rotation = node.rotation;
+              // TODO: Actions
+            }
+            first = false;
           }
-          first = false;
+          project.paths.push(newPath);
         }
-        project.paths.push(newPath);
+        updateProject(project);
+      } catch (error) {
+        alert("Error in parsing auto file: " + error.toString());
       }
-      updateProject(project);
     });
   });
   document.getElementById("preview").addEventListener("click", () => {
