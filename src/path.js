@@ -14,9 +14,7 @@ class PathNode {
 }
 
 export class Path {
-  constructor(context, vp, pos, name) {
-    this.canvasContext = context;
-    this.viewport = vp;
+  constructor(pos, name) {
     this.nodes = [new PathNode(pos, 0)];
     this.name = name;
   }
@@ -40,17 +38,17 @@ export class Path {
     }
     return closest;
   }
-  draw() {
+  draw(target) {
     let first = true;
     for (const node of this.nodes) {
-      const pos = this.viewport.fromViewport(node.position);
+      const pos = target.viewport.fromViewport(node.position);
       if (first) {
-        this.canvasContext.moveTo(pos.x, pos.y);
+        target.context.moveTo(pos.x, pos.y);
         first = false;
       } else {
-        this.canvasContext.lineTo(pos.x, pos.y);
+        target.context.lineTo(pos.x, pos.y);
       }
     }
-    this.canvasContext.stroke();
+    target.context.stroke();
   }
 }

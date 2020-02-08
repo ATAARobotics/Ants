@@ -1,6 +1,7 @@
 "use strict";
 
 import { Vec2 } from "/src/vec2.js";
+import { RenderTarget } from "/src/renderTarget.js";
 
 function loadJson(file, callback) {
   const rawFile = new XMLHttpRequest();
@@ -25,7 +26,7 @@ loadJson("/exports/units.json", data => units = data);
 
 function download(filename, data) {
   const element = document.createElement('a');
-  element.setAttribute('href', 'data:text/x-autofile;charset=utf-8,' + encodeURIComponent(data));
+  element.setAttribute('href', data);
   element.setAttribute('download', filename);
 
   element.style.display = 'none';
@@ -104,10 +105,20 @@ export function registerButtons(project) {
   document.getElementById("new-project").addEventListener("click", () => {});
   document.getElementById("export").addEventListener("click", () => {
     const type = document.getElementById("type-selector").value;
+    let name = document.getElementById("project-name").value;
     switch (type) {
     case "save":
       break;
     case "bitmap":
+      const tmpCanvas = document.createElement("canvas");
+      const target = new RenderTarget(tmpCanvas);
+      target.canvas.width = 1200;
+      target.canvas.height = 600;
+      target.size.x = 1200;
+      target.size.y = 600;
+      target.viewport.size = 1200;
+      project.draw(target);
+      download(name + ".png", target.canvas.toDataURL());
       break;
     case "vector":
       break;
@@ -116,7 +127,7 @@ export function registerButtons(project) {
       break;
     default:
       loadJson("/exports/" + type + ".json", data =>
-        download(document.getElementById("project-name").value + ".auto", generateAuto(data, project)));
+        download(name + ".auto", 'data:text/x-autofile;charset=utf-8,' + encodeURIComponent(generateAuto(data, project))));
     }
   });
   document.getElementById("import").addEventListener("click", () => {});

@@ -1,11 +1,13 @@
 "use strict";
 
 import { Path } from "/src/path.js";
+import { Vec2 } from "/src/vec2.js";
+
+const field = new Image();
+field.src = "/field.png";
 
 export class Project {
   constructor(canvas, context, mouseState, viewport) {
-    this.canvas = canvas;
-    this.canvasContext = context;
     this.viewport = viewport;
     this.mouseState = mouseState;
     this.paths = [];
@@ -28,7 +30,7 @@ export class Project {
           if (snappedNode && snappedNode.tail) {
             selectedPath = snappedPath;
           } else {
-            selectedPath = new Path(this.canvasContext, this.viewport, this.mouseState.position, this.paths.length.toString());
+            selectedPath = new Path(this.mouseState.position, this.paths.length.toString());
             this.paths.push(selectedPath);
           }
           this.selected = selectedPath.addNode(this.mouseState.position);
@@ -40,13 +42,16 @@ export class Project {
       }
     });
   }
-  draw() {
+  draw(target) {
+    const pos = target.viewport.fromViewport(new Vec2(0, 0));
+    const size = target.viewport.size;
+    target.context.drawImage(field, pos.x-size/2, pos.y-size/4, size, size/2);
     if (this.selected) {
       this.selected.position.x = this.mouseState.position.x;
       this.selected.position.y = this.mouseState.position.y;
     }
     for (const path of this.paths) {
-      path.draw();
+      path.draw(target);
     }
   }
 }
