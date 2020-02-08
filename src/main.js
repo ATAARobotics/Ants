@@ -12,9 +12,9 @@ window.addEventListener("load", () => {
   const canvas = new RenderTarget(document.getElementById("canvas"));
   const projectName = document.getElementById("project-name");
   const mouseState = new MouseState(canvas.canvas, canvas.viewport);
-  let project = new Project(canvas.canvas, canvas.context, mouseState, canvas.viewport);
+  let project = new Project(mouseState, canvas.viewport);
   canvas.viewport.size = Math.min(canvas.canvas.offsetWidth, canvas.canvas.offsetHeight*2);
-  registerButtons(project);
+  registerButtons(project, newProject => project = newProject);
   setInterval(() => {
     canvas.resize();
     canvas.viewport.drag(mouseState);

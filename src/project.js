@@ -7,7 +7,7 @@ const field = new Image();
 field.src = "/field.png";
 
 export class Project {
-  constructor(canvas, context, mouseState, viewport) {
+  constructor(mouseState, viewport) {
     this.viewport = viewport;
     this.mouseState = mouseState;
     this.paths = [];

@@ -2,6 +2,8 @@
 
 import { Vec2 } from "/src/vec2.js";
 import { RenderTarget } from "/src/renderTarget.js";
+import { Project } from "/src/project.js";
+import { Path } from "/src/path.js";
 
 function loadJson(file, callback) {
   const rawFile = new XMLHttpRequest();
@@ -29,12 +31,25 @@ function download(filename, data) {
   element.setAttribute('href', data);
   element.setAttribute('download', filename);
 
-  element.style.display = 'none';
-  document.body.appendChild(element);
+  element.click();
+}
+
+function upload(callback) {
+  const element = document.createElement("input");
+  element.setAttribute("type", "file");
+  element.setAttribute("accept", ".ants");
 
   element.click();
 
-  document.body.removeChild(element);
+  element.addEventListener("change", ev => {
+    const file = ev.target.files[0];
+    const reader = new FileReader();
+    reader.onload = readerEvent => {
+      const content = readerEvent.target.result;
+      callback(content);
+    };
+    reader.readAsText(file, 'UTF-8');
+  });
 }
 
 function generateAuto(format, project) {
@@ -135,6 +150,7 @@ function saveProject(project) {
         "rotation": node.rotation,
         "actions":  []
       };
+      // TODO: Actions
       pathDict.nodes.push(nodeDict);
     }
     pathsList.push(pathDict);
@@ -142,8 +158,10 @@ function saveProject(project) {
   return pathsList;
 }
 
-export function registerButtons(project) {
-  document.getElementById("new-project").addEventListener("click", () => {});
+export function registerButtons(project, updateProject) {
+  document.getElementById("new-project").addEventListener("click", () => {
+    updateProject(new Project(project.mouseState, project.viewport));
+  });
   document.getElementById("export").addEventListener("click", () => {
     const type = document.getElementById("type-selector").value;
     let name = document.getElementById("project-name").value;
@@ -174,7 +192,26 @@ export function registerButtons(project) {
         download(name + ".auto", 'data:text/x-autofile;charset=utf-8,' + encodeURIComponent(generateAuto(data, project))));
     }
   });
-  document.getElementById("import").addEventListener("click", () => {});
+  document.getElementById("import").addEventListener("click", () => {
+    upload(file => {
+      const projectObject = JSON.parse(file);
+      project = new Project(project.mouseState, project.viewport);
+      for (const path of projectObject) {
+        const newPath = new Path(path.nodes[0].position, path.name);
+        let first = true;
+        for (const node of path.nodes) {
+          if (!first) {
+            const newNode = newPath.addNode(node.position);
+            newNode.rotation = node.rotation;
+            // TODO: Actions
+          }
+          first = false;
+        }
+        project.paths.push(newPath);
+      }
+      updateProject(project);
+    });
+  });
   document.getElementById("preview").addEventListener("click", () => {
     alert("Not implemented yet!");
   });
