@@ -125,6 +125,23 @@ function generateSvg(project) {
   return fileString;
 }
 
+function saveProject(project) {
+  const pathsList = [];
+  for (const path of project.paths) {
+    const pathDict = {"nodes": [], "name": path.name};
+    for (const node of path.nodes) {
+      const nodeDict = {
+        "position": {"x": node.position.x, "y": node.position.y},
+        "rotation": node.rotation,
+        "actions":  []
+      };
+      pathDict.nodes.push(nodeDict);
+    }
+    pathsList.push(pathDict);
+  }
+  return pathsList;
+}
+
 export function registerButtons(project) {
   document.getElementById("new-project").addEventListener("click", () => {});
   document.getElementById("export").addEventListener("click", () => {
@@ -132,6 +149,7 @@ export function registerButtons(project) {
     let name = document.getElementById("project-name").value;
     switch (type) {
     case "save":
+      download(name + ".ants", "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(saveProject(project))));
       break;
     case "bitmap":
       const tmpCanvas = document.createElement("canvas");
@@ -149,6 +167,7 @@ export function registerButtons(project) {
       break;
     case "pdf":
     case "print":
+      alert("Not Implemented Yet!");
       break;
     default:
       loadJson("/exports/" + type + ".json", data =>
