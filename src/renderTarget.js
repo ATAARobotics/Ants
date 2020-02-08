@@ -1,7 +1,7 @@
 "use strict";
 
-import { Vec2 } from "/src/vec2.js";
-import { Viewport } from "/src/viewport.js";
+import { Vec2 } from "./vec2.js";
+import { Viewport } from "./viewport.js";
 
 export class RenderTarget {
   constructor(canvas) {

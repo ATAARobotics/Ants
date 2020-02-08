@@ -1,9 +1,9 @@
 "use strict";
 
-import { Vec2 } from "/src/vec2.js";
-import { RenderTarget } from "/src/renderTarget.js";
-import { Project } from "/src/project.js";
-import { Path } from "/src/path.js";
+import { Vec2 } from "./vec2.js";
+import { RenderTarget } from "./renderTarget.js";
+import { Project } from "./project.js";
+import { Path } from "./path.js";
 
 function loadJson(file, callback) {
   const rawFile = new XMLHttpRequest();
@@ -24,7 +24,7 @@ function loadJson(file, callback) {
 }
 
 let units = {};
-loadJson("/exports/units.json", data => units = data);
+loadJson("./exports/units.json", data => units = data);
 
 function download(filename, data) {
   const element = document.createElement('a');

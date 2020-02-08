@@ -1,10 +1,10 @@
 "use strict";
 
-import { Vec2 } from "/src/vec2.js";
-import { MouseState } from "/src/mouse.js";
-import { Project } from "/src/project.js";
-import { RenderTarget } from "/src/renderTarget.js";
-import { registerButtons } from "/src/export.js";
+import { Vec2 } from "./vec2.js";
+import { MouseState } from "./mouse.js";
+import { Project } from "./project.js";
+import { RenderTarget } from "./renderTarget.js";
+import { registerButtons } from "./export.js";
 
 /// Non-project specific stuff goes in this file, and a basic wrapper for easy canvas use.
 

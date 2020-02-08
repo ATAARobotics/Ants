@@ -1,6 +1,6 @@
 "use strict";
 
-import { Vec2 } from "/src/vec2.js";
+import { Vec2 } from "./vec2.js";
 
 const nodeSize = 0.1;
 

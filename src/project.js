@@ -1,10 +1,10 @@
 "use strict";
 
-import { Path } from "/src/path.js";
-import { Vec2 } from "/src/vec2.js";
+import { Path } from "./path.js";
+import { Vec2 } from "./vec2.js";
 
 const field = new Image();
-field.src = "/field.png";
+field.src = "./field.png";
 
 export class Project {
   constructor(mouseState, viewport) {
