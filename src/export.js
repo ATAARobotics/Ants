@@ -188,7 +188,7 @@ export function registerButtons(project, updateProject) {
       alert("Not Implemented Yet!");
       break;
     default:
-      loadJson("/exports/" + type + ".json", data =>
+      loadJson("./exports/" + type + ".json", data =>
         download(name + ".auto", 'data:text/x-autofile;charset=utf-8,' + encodeURIComponent(generateAuto(data, project))));
     }
   });
