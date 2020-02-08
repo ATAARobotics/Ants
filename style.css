@@ -86,8 +86,8 @@ body {
   position: fixed;
   left: calc( 5vw + 1em );
   bottom: calc( ( 100vh - 4em ) * 0.1 + 1.9em );
-  -webkit-mask: url("/locate.svg");
-  mask: url("/locate.svg");
+  -webkit-mask: url("./locate.svg");
+  mask: url("./locate.svg");
   -webkit-mask-size: cover;
   mask-size: cover;
   width: 3em;

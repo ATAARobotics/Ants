@@ -117,7 +117,7 @@ function generateAuto(format, project) {
 }
 
 const field = new Image();
-field.src = "/field.png";
+field.src = "./field.png";
 
 function generateSvg(project) {
   let fileString = "";
