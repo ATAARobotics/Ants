@@ -14,10 +14,11 @@ class PathNode {
 }
 
 export class Path {
-  constructor(context, vp, pos) {
+  constructor(context, vp, pos, name) {
     this.canvasContext = context;
     this.viewport = vp;
     this.nodes = [new PathNode(pos, 0)];
+    this.name = name;
   }
   addNode(pos) {
     const lastNode = this.nodes[this.nodes.length-1];

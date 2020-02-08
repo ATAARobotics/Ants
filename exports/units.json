@@ -1,0 +1,62 @@
+{
+  "centimeter": {
+    "type": "number", "// The type, can be: number, string, enum, boolean": null,
+    "measurement": "distance", "// The thing this unit is measuring.": null,
+    "suffix": "cm", "// The suffix to append to the end of numbers with this unit.": null,
+    "ratio": 1.0, "// The ratio between this unit and other units of the same measurement.": null
+  },
+  "inch": {
+    "type": "number",
+    "measurement": "distance",
+    "suffix": "\"",
+    "ratio": 2.54
+  },
+  "feet": {
+    "type": "number",
+    "measurement": "distance",
+    "suffix": "'",
+    "ratio": 30.48
+  },
+  "meter": {
+    "type": "number",
+    "measurement": "distance",
+    "suffix": "m",
+    "ratio": 100.0
+  },
+  "field": {
+    "type": "number",
+    "measurement": "distance",
+    "suffix": "f",
+    "ratio": 1633.7
+  },
+  "degrees": {
+    "type": "number",
+    "measurement": "rotation",
+    "suffix": "d",
+    "ratio": 360,
+    "filePrefix": "",
+    "fileSuffix": ""
+  },
+  "radians": {
+    "type": "number",
+    "measurement": "rotation",
+    "suffix": "r",
+    "ratio": 6.28318530718
+  },
+  "gradians": {
+    "type": "number",
+    "measurement": "rotation",
+    "suffix": "g",
+    "ratio": 300
+  },
+  "turns": {
+    "type": "number",
+    "measurement": "rotation",
+    "suffix": "t",
+    "ratio": 1.0
+  },
+  "teams": {
+    "type": "enum",
+    "options": ["blue", "red"]
+  }
+}

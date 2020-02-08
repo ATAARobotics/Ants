@@ -4,7 +4,7 @@ import { Path } from "/src/path.js";
 
 export class Project {
   constructor(canvas, context, mouseState, viewport) {
-    this.canvs = canvas;
+    this.canvas = canvas;
     this.canvasContext = context;
     this.viewport = viewport;
     this.mouseState = mouseState;
@@ -28,7 +28,7 @@ export class Project {
           if (snappedNode && snappedNode.tail) {
             selectedPath = snappedPath;
           } else {
-            selectedPath = new Path(this.canvasContext, this.viewport, this.mouseState.position);
+            selectedPath = new Path(this.canvasContext, this.viewport, this.mouseState.position, this.paths.length.toString());
             this.paths.push(selectedPath);
           }
           this.selected = selectedPath.addNode(this.mouseState.position);
