@@ -101,6 +101,30 @@ function generateAuto(format, project) {
   return fileString;
 }
 
+const field = new Image();
+field.src = "/field.png";
+
+function generateSvg(project) {
+  let fileString = "";
+  fileString += `<svg height="600" width="1200">\n`;
+  const canvas = document.createElement("canvas");
+  canvas.width = 1200;
+  canvas.height = 600;
+  canvas.getContext("2d").drawImage(field, 0, 0, 1200, 600);
+  fileString += `\t<image x="0" y="0" width="1200" height="600"
+     xlink:href="${canvas.toDataURL()}" />\n`;
+  for (const path of project.paths) {
+    let pathpoints = "";
+    for (const node of path.nodes) {
+      pathpoints += (node.position.x+0.5)*1200 + ",";
+      pathpoints += (0.25-node.position.y)*1200 + ",";
+    }
+    fileString += `\t<polyline points="${pathpoints}" style="fill:none;stroke:black;stroke-width:3" />\n`;
+  }
+  fileString += `</svg>\n`;
+  return fileString;
+}
+
 export function registerButtons(project) {
   document.getElementById("new-project").addEventListener("click", () => {});
   document.getElementById("export").addEventListener("click", () => {
@@ -121,6 +145,7 @@ export function registerButtons(project) {
       download(name + ".png", target.canvas.toDataURL());
       break;
     case "vector":
+      download(name + ".svg", "data:image/svg+xml," + encodeURIComponent(generateSvg(project)));
       break;
     case "pdf":
     case "print":
