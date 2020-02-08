@@ -2,7 +2,8 @@
 ---
 # Todo (unordered):
  * Add selecting lines and nodes
- * Add switching projects (import, export and new)
+ * Add support for exporting to PDF
+ * Add support for exporting to 4334's auto format
  * Add modifying properties of nodes and lines
  * Add multiselection
  * Add documentation
