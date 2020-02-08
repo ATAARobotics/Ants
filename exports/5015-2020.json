@@ -1,0 +1,56 @@
+{
+  "extension": ".auto", "// The extension to add to the file.": null,
+  "version": "5015-2020-rev1", "// The first line of the file, if empty no newline will be added.": null,
+  "pathStartPrefix": "", "// The prefix before the name of the start of a new path.": null,
+  "pathStartSuffix": ":\n", "// The suffix after the name of the start of a new path.": null,
+  "pathStartName": true, "// Whether the name of a new path should be put at the start of a new path.": null,
+  "pathEndPrefix": "", "// The prefix before the name of the end of a path.": null,
+  "pathEndSuffix": "", "// The suffix after the name of the end of a path.": null,
+  "pathEndName": false, "// Whether the name of a new path should be put at the end of a path.": null,
+  "commandPrefix": "", "// The prefix before any command in the file.": null,
+  "commandSuffix": "\n", "// The suffix after any command in the file.": null,
+  "verbNounSeparator": " ", "// The string to insert between a verb and the first noun, not added if no nouns.": null,
+  "verbSeparator": ",", "// The string to insert between consecutive verbs.": null,
+  "driveForwardVerb": "m", "// The verb to use to drive the robot forward.": null,
+  "driveBackwardVerb": "m", "// The verb to use to drive the robot backward.": null,
+  "driveBackwardNegitive": true, "// Whether the distance should be inverted when driving backwards.": null,
+  "rotateVerb": "r", "// The verb to use to rotate the robot.": null,
+  "reverseRotate": false, "// Whether the robot expects counter-clockwise rotations.": null,
+  "relativeRotate": false, "// Whether the rotation command should be relative to the last rotation.": null,
+  "// The list of verbs available to write to the file:": null,
+  "verbs": {
+    "m": {
+      "// The list of parameter possibilities for the command, in this case it only excepts exactly one 'feet'-type number:": null,
+      "parameters": [
+        {"types": ["feet"], "min": 1, "max": 1}
+      ],
+      "hidden": true, "// Whether to allow the user to select this option.": null
+    },
+    "r": {
+      "// The first parameter is the rotation to point in (absolute).": null,
+      "parameters": [
+        {"types": ["degrees"], "min": 1, "max": 1}
+      ],
+      "hidden": false
+    },
+    "s": {
+      "// The first parameter is the hole on the field to aim for, defaults to the closest one.": null,
+      "parameters": [
+        {"types": ["teams"], "min": 0, "max": 1}
+      ],
+      "hidden": false
+    }
+  },
+  "// The list of nouns that can be put in the file, and their format, if a unit is missing, it will never be written to the file.": null,
+  "// NOTE: Enums can always be written.": null,
+  "nouns": {
+    "feet": {
+      "filePrefix": "", "// The string to prepend to any units in an output file, if missing, units will be converted to another that has the same measurement.": null,
+      "fileSuffix": "", "// The string to append to any units in an output file, if missing, units will be converted to another that has the same measurement.": null
+    },
+    "degrees": {
+      "filePrefix": "",
+      "fileSuffix": ""
+    }
+  }
+}

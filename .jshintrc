@@ -1,6 +1,6 @@
 {
   "esversion": 7,
-  "maxerr": 12,
+  "maxerr": 100,
 
   "undef": true,
   "curly": true,
