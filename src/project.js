@@ -43,16 +43,18 @@ export class Project {
             snappedDist = newDist;
           }
         }
-        let selectedPath;
-        if (snappedNode && snappedNode.tail) {
-          selectedPath = snappedPath;
-        } else {
-          selectedPath = new Path(this.mouseState.position, this.paths.length.toString());
-          this.paths.push(selectedPath);
-        }
-        this.selected = selectedPath.addNode(this.mouseState.position);
-      } else {
+        if (this.mouseState.held[0].held) {
+          let selectedPath;
+          if (snappedNode && snappedNode.tail) {
+            selectedPath = snappedPath;
+          } else {
+            selectedPath = new Path(this.mouseState.position, this.paths.length.toString());
+            this.paths.push(selectedPath);
+          }
+          this.selected = selectedPath.addNode(this.mouseState.position);
+        } else if (this.mouseState.held[2].held) {
 
+        }
       }
     }
     for (const path of this.paths) {
