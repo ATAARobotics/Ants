@@ -2,8 +2,6 @@
 
 import { Vec2 } from "./vec2.js";
 
-const nodeSize = 0.1;
-
 class PathNode {
   constructor(pos, r) {
     this.position = new Vec2(pos.x, pos.y);
@@ -27,7 +25,7 @@ export class Path {
     this.nodes.push(newNode);
     return newNode;
   }
-  selectNode(pos, tail) {
+  selectNode(pos, tail, nodeSize) {
     let closest = false;
     let closestDist = nodeSize;
     for (const node of this.nodes) {
@@ -37,7 +35,7 @@ export class Path {
         closestDist = dist;
       }
     }
-    return closest;
+    return [closest, closestDist];
   }
   draw(target) {
     let first = true;
