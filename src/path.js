@@ -64,7 +64,7 @@ export class Path {
 }
 
 function arrow(ctx, pos, rot) {
-  const size = 25;
+  const size = 10;
   ctx.moveTo(pos.x+Math.sin(rot+Math.PI)/5*size, pos.y+Math.cos(rot+Math.PI)/5*size);
   ctx.lineTo(pos.x+Math.sin(rot-Math.PI/2)*size, pos.y+Math.cos(rot-Math.PI/2)*size);
   ctx.lineTo(pos.x+Math.sin(rot)/5*size, pos.y+Math.cos(rot)/5*size);
