@@ -43,6 +43,11 @@ export class Project {
     });
   }
   draw(target) {
+    if (this.selected && this.selected.previous) {
+      const rotation = Math.atan2(this.selected.previous.position.y-this.selected.position.y, this.selected.previous.position.x-this.selected.position.x);
+      this.selected.previous.rotation = rotation;
+      this.selected.rotation = rotation;
+    }
     const pos = target.viewport.fromViewport(new Vec2(0, 0));
     const size = target.viewport.size;
     target.context.drawImage(field, pos.x-size/2, pos.y-size/4, size, size/2);
