@@ -2,8 +2,6 @@
 
 import { Vec2 } from "./vec2.js";
 
-const nodeSize = 0.1;
-
 class PathNode {
   constructor(pos, r) {
     this.position = new Vec2(pos.x, pos.y);
@@ -23,10 +21,11 @@ export class Path {
     lastNode.tail = false;
     const rotation = Math.atan2(lastNode.position.y-pos.y, lastNode.position.x-pos.x);
     const newNode = new PathNode(pos, rotation);
+    newNode.previous = lastNode;
     this.nodes.push(newNode);
     return newNode;
   }
-  selectNode(pos, tail) {
+  selectNode(pos, tail, nodeSize) {
     let closest = false;
     let closestDist = nodeSize;
     for (const node of this.nodes) {
@@ -36,10 +35,13 @@ export class Path {
         closestDist = dist;
       }
     }
-    return closest;
+    return [closest, closestDist];
   }
   draw(target) {
     let first = true;
+    target.context.beginPath();
+    target.context.strokeStyle = "#000000";
+    target.context.lineWidth = 3;
     for (const node of this.nodes) {
       const pos = target.viewport.fromViewport(node.position);
       if (first) {
@@ -50,5 +52,20 @@ export class Path {
       }
     }
     target.context.stroke();
+    target.context.beginPath();
+    target.context.strokeStyle = "#ff0000";
+    target.context.lineWidth = 5;
+    for (const node of this.nodes) {
+      const pos = target.viewport.fromViewport(node.position);
+      arrow(target.context, pos, node.rotation);
+    }
+    target.context.stroke();
   }
+}
+
+function arrow(ctx, pos, rot) {
+  const size = 10;
+  ctx.moveTo(pos.x+Math.sin(rot+Math.PI)/5*size, pos.y+Math.cos(rot+Math.PI)/5*size);
+  ctx.lineTo(pos.x+Math.sin(rot-Math.PI/2)*size, pos.y+Math.cos(rot-Math.PI/2)*size);
+  ctx.lineTo(pos.x+Math.sin(rot)/5*size, pos.y+Math.cos(rot)/5*size);
 }

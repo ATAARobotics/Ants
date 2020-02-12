@@ -3,8 +3,8 @@
 import { Vec2 } from "./vec2.js";
 
 class MouseButtonState {
-  constructor(x, y, held) {
-    this.lastPosition = new Vec2(x, y); // the position when the button was pressed or released.
+  constructor(pos, held) {
+    this.lastPosition = pos; // the position when the button was pressed or released.
     this.held = held;
   }
 }
@@ -19,7 +19,7 @@ export class MouseState {
     }
     this.downListener = canvas.addEventListener("mousedown", ev => {
       if (ev.button >= 0 && ev.button <= 2) {
-        this.held[ev.button] = new MouseButtonState(ev.clientX, ev.clientY, true);
+        this.held[ev.button] = new MouseButtonState(vp.toViewport(new Vec2(ev.clientX-canvas.offsetLeft, ev.clientY-canvas.offsetTop)), true);
       }
       for (const handler of this.handlers) {
         handler();
@@ -27,7 +27,7 @@ export class MouseState {
     });
     this.upListener = window.addEventListener("mouseup", ev => {
       if (ev.button >= 0 && ev.button <= 2) {
-        this.held[ev.button] = new MouseButtonState(ev.clientX, ev.clientY, false);
+        this.held[ev.button] = new MouseButtonState(vp.toViewport(new Vec2(ev.clientX-canvas.offsetLeft, ev.clientY-canvas.offsetTop)), false);
       }
     });
     this.moveListener = window.addEventListener("mousemove", ev => {

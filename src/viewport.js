@@ -26,14 +26,8 @@ export class Viewport {
   drag(mouseState) {
     const middleButton = mouseState.held[1];
     if (middleButton.held) {
-      if (this.dragging) {
-        this.pos.x = (middleButton.lastPosition.x-mouseState.position.x)+this.dragging.x;
-        this.pos.y = (mouseState.position.y-middleButton.lastPosition.y)+this.dragging.y;
-      } else {
-        this.dragging = new Vec2(this.pos.x, this.pos.y);
-      }
-    } else {
-      this.dragging = false;
+      this.pos.x += middleButton.lastPosition.x - mouseState.position.x;
+      this.pos.y += middleButton.lastPosition.y - mouseState.position.y;
     }
   }
 }
