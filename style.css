@@ -23,6 +23,10 @@
   }
 }
 
+body {
+  font-family: sans-serif;
+}
+
 .icon {
   width: 2.5em;
   float: left;
@@ -31,9 +35,53 @@
 }
 
 header {
-  background-color: var(--header-colour);
   padding: 0.5em 1.5em;
   box-shadow: 0 0.2em 2.5em var(--shadow-colour);
+}
+
+.overlay {
+  background-color: var(--header-colour);
+}
+
+.options {
+  box-shadow: 0.2em 0.2em 1em 0.1em var(--shadow-colour);
+  display: none;
+  position: fixed;
+  top: calc( 10vh + 4em );
+  right: calc( 5vw + 1em );
+  bottom: calc( ( 100vh - 4em ) * 0.1 + 1.9em );
+  width: 15em;
+  padding: 1em;
+  border-radius: 1em;
+  overflow: hidden auto;
+}
+.options>input,.options>button {
+  width: calc( 100% - 1.4em );
+  height: 1em;
+  box-shadow: 0.1em 0.1em 0.5em var(--shadow-colour);
+  border-radius: 0.5em;
+  padding: 0.5em;
+  background-color: var(--header-colour);
+  outline: none;
+  border-width: 0.2em;
+  border-color: var(--fg-colour);
+  border-style: solid;
+  margin: 0.2em 0;
+}
+
+.options>button:hover,.options>input:hover {
+  background: var(--hover-bg-colour);
+  border-color: var(--hover-fg-colour);
+}
+
+.options>input:focus {
+  background: var(--active-bg-colour);
+  border-color: var(--fg-colour);
+}
+
+.options>button:active {
+  background: var(--active-bg-colour);
+  border-color: var(--fg-colour);
 }
 
 .action {
@@ -98,6 +146,23 @@ body {
   background-color: var(--hover-fg-colour);
 }
 #recenter:active {
+  background-color: var(--active-fg-colour);
+}
+
+#hide-options {
+  float: right;
+  -webkit-mask: url("./hide.svg");
+  mask: url("./hide.svg");
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  width: 2em;
+  height: 2em;
+  background-color: var(--fg-colour);
+}
+#hide-options:hover {
+  background-color: var(--hover-fg-colour);
+}
+#hide-options:active {
   background-color: var(--active-fg-colour);
 }
 

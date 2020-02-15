@@ -4,7 +4,8 @@ import { Vec2 } from "./vec2.js";
 import { MouseState } from "./mouse.js";
 import { Project } from "./project.js";
 import { RenderTarget } from "./renderTarget.js";
-import { registerButtons } from "./export.js";
+import { registerExportButtons } from "./export.js";
+import { registerOptionButtons } from "./options.js";
 
 /// Non-project specific stuff goes in this file, and a basic wrapper for easy canvas use.
 
@@ -14,7 +15,8 @@ window.addEventListener("load", () => {
   const mouseState = new MouseState(canvas.canvas, canvas.viewport);
   let project = new Project(mouseState, canvas.viewport);
   canvas.viewport.size = Math.min(canvas.canvas.offsetWidth, canvas.canvas.offsetHeight*2);
-  registerButtons(project, newProject => project = newProject);
+  registerExportButtons(project, newProject => project = newProject);
+  registerOptionButtons(project);
   setInterval(() => {
     canvas.resize();
     canvas.viewport.drag(mouseState);

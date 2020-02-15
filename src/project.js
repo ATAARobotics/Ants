@@ -2,6 +2,7 @@
 
 import { Path } from "./path.js";
 import { Vec2 } from "./vec2.js";
+import { openOptionPanel } from "./options.js";
 
 const field = new Image();
 field.src = "./field.png";
@@ -54,6 +55,7 @@ export class Project {
         }
         this.selected = selectedPath.addNode(this.mouseState.position);
         this.configuring = {"path": selectedPath, "node": this.selected};
+        openOptionPanel(this.configuring);
       } else if (this.mouseState.held[2].held) {
         let snappedNode = false;
         let snappedPath = false;
@@ -70,6 +72,7 @@ export class Project {
           console.log("Right-click");
           this.selected = snappedNode;
           this.configuring = {"path": snappedPath, "node": snappedNode};
+          openOptionPanel(this.configuring);
         }
       }
     }

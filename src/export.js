@@ -158,7 +158,7 @@ function saveProject(project) {
   return pathsList;
 }
 
-export function registerButtons(project, updateProject) {
+export function registerExportButtons(project, updateProject) {
   document.getElementById("new-project").addEventListener("click", () => {
     updateProject(new Project(project.mouseState, project.viewport));
   });

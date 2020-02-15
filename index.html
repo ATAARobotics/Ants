@@ -8,7 +8,7 @@
     <script type="module" src="./src/main.js"></script>
   </head>
   <body>
-    <header>
+    <header class="overlay">
       <img class="icon" src="./icon.png" alt="ANTS Icon">
       <button id="new-project" class="action" type="button" id="new">New Plan</button>
       <input class="action" type="text" value="Unnamed" placeholder="Enter Plan Name" id="project-name">
@@ -31,8 +31,12 @@
       <button class="action" type="button" id="import">Load Plan</button>
       <button class="action right" type="button" id="preview">Preview Plan</button>
     </header>
-    <canvas id="canvas">Javascript is not enabled.</canvas>
+    <script>/*<h1>Javascript isn't supported and enabled.</h1>*/</script>
+    <canvas id="canvas"><h1>Canvas isn't supported and enabled.</h1></canvas>
     <span id="recenter" class="svg svg-locate" src="./crosshair.svg"></span>
+    <div id="options-panel" class="overlay options">
+      <span id="hide-options" class="svg svg-hide"></span>
+    </div>
     <footer>
       <a href="./readme">Readme</a> |
       <a href="./license">License</a> |
