@@ -18,6 +18,7 @@
   "reverseRotate": false, "// Whether the robot expects counter-clockwise rotations.": null,
   "relativeRotate": false, "// Whether the rotation command should be relative to the last rotation.": null,
   "// The list of verbs available to write to the file:": null,
+  "shootCommand": "s",
   "verbs": {
     "m": {
       "// The list of parameter possibilities for the command, in this case it only excepts exactly one 'feet'-type number:": null,

@@ -107,6 +107,9 @@ function generateAuto(format, project) {
           writeCommand(format.driveBackwardVerb, [{"type": backwardUnit, "value": dist}]);
         }
       }
+      if (node.shoot) {
+        writeCommand(format.shootCommand, []);
+      }
       currentPosition = node.position;
       // currentRotation = node.rotation;
       first = false;
