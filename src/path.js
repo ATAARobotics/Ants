@@ -8,6 +8,13 @@ class PathNode {
     this.rotation = r;
     this.actions = [];
     this.tail = true;
+    this.rotationElement = null;
+  }
+  rotate(rotation) {
+    this.rotation = rotation;
+    if (this.rotationElement) {
+      this.rotationElement.value = rotation;
+    }
   }
 }
 

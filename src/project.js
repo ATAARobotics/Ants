@@ -26,8 +26,8 @@ export class Project {
         const prev = this.selected.previous;
         if (prev) {
           const rotation = Math.atan2(prev.position.y-this.selected.position.y, prev.position.x-this.selected.position.x);
-          prev.rotation = rotation;
-          this.selected.rotation = rotation;
+          prev.rotate(rotation);
+          this.selected.rotate(rotation);
         }
       } else {
         this.selected = false;
@@ -69,7 +69,6 @@ export class Project {
           }
         }
         if (snappedNode) {
-          console.log("Right-click");
           this.selected = snappedNode;
           this.configuring = {"path": snappedPath, "node": snappedNode};
           openOptionPanel(this.configuring);

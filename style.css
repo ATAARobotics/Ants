@@ -27,6 +27,36 @@ body {
   font-family: sans-serif;
 }
 
+.hidden {
+  display: none;
+}
+
+.label {
+  margin-bottom: 0;
+}
+
+.input-display {
+  cursor: pointer;
+  background-color: var(--active-bg-colour);
+  width: calc( 100% - 2em );
+  height: 1em;
+  display: block;
+  border-radius: 0.2em;
+  padding: 1em;
+  text-align: center;
+}
+
+.action.input-container {
+  display: block;
+  padding: 0;
+  box-shadow: 0.1em 0.1em 0.5em var(--shadow-colour);
+  margin: 0.2em 0;
+}
+
+input:checked + .input-display {
+  background-color: var(--hover-bg-colour);
+}
+
 .icon {
   width: 2.5em;
   float: left;
