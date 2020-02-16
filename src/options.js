@@ -48,6 +48,8 @@ export function openOptionPanel(configuring) {
   const shootDisplay = document.createElement("span");
   shootDisplay.className = "input-display";
   shootDisplay.innerText = "Shoot";
+  shootInput.checked = configuring.node.shoot;
+  shootDisplay.addEventListener("mouseup", () => configuring.node.shoot = !shootInput.checked);
   shootDiv.appendChild(shootInput);
   shootDiv.appendChild(shootDisplay);
   options.appendChild(shootDiv);

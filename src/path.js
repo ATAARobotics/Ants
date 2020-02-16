@@ -9,6 +9,7 @@ class PathNode {
     this.actions = [];
     this.tail = true;
     this.rotationElement = null;
+    this.shoot = false;
   }
   rotate(rotation) {
     this.rotation = rotation;
