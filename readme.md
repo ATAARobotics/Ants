@@ -8,7 +8,7 @@ plan your plan.
 
 ## Links
  * [Website is hosted on github pages here.](https://ataarobotics.ca/Ants/)
- * [TODO File with planns here.](https://ataarobotics.ca/Ants/todo)
+ * [TODO File with plans here.](https://ataarobotics.ca/Ants/todo)
  * [License (ISC) here.](https://ataarobotics.ca/Ants/license)
 
 # Credits:
