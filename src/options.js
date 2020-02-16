@@ -3,7 +3,10 @@
 const options = document.getElementById("options-panel");
 export function registerOptionButtons(project) {
   const hideButton = document.getElementById("hide-options");
-  hideButton.addEventListener("click", () => options.style.display = "none");
+  hideButton.addEventListener("click", () => {
+    options.style.display = "none";
+    project.configuring = false ;
+  });
 }
 
 const nameElement = document.createElement("p");
