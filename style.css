@@ -85,6 +85,12 @@ header {
   border-radius: 1em;
   overflow: hidden auto;
 }
+
+.options>button {
+  width: 100% !important;
+  height: 3em !important;
+}
+
 .options>input,.options>button {
   width: calc( 100% - 1.4em );
   height: 1em;

@@ -45,6 +45,17 @@ export class Path {
     }
     return [closest, closestDist];
   }
+  deleteNode(node) {
+    let nodeIndex = 0;
+    for (const i in this.nodes) {
+      const n = this.nodes[i];
+      if (n === node) {
+        nodeIndex = i;
+        break;
+      }
+    }
+    this.nodes.splice(nodeIndex, 1);
+  }
   draw(target, selected) {
     let first = true;
     target.context.beginPath();

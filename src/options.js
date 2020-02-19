@@ -56,4 +56,13 @@ export function openOptionPanel(configuring) {
   shootDiv.appendChild(shootInput);
   shootDiv.appendChild(shootDisplay);
   options.appendChild(shootDiv);
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "Delete";
+  deleteButton.className = "delete";
+  deleteButton.addEventListener("mouseup", () => configuring.path.deleteNode(configuring.node));
+  options.appendChild(deleteButton);
+  const insertButton = document.createElement("button");
+  insertButton.innerText = "Insert node before this node";
+  insertButton.className = "delete";
+  options.appendChild(insertButton);
 }

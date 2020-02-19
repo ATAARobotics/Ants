@@ -66,6 +66,7 @@ export class Project {
           if (node && newDist < snappedDist) {
             snappedNode = node;
             snappedDist = newDist;
+            snappedPath = path;
           }
         }
         if (snappedNode) {
