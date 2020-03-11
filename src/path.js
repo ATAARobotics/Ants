@@ -10,6 +10,7 @@ class PathNode {
     this.tail = true;
     this.rotationElement = null;
     this.shoot = false;
+    this.backwards = false;
   }
   rotate(rotation) {
     this.rotation = rotation;
@@ -89,13 +90,10 @@ export class Path {
     for (const node of this.nodes) {
       target.context.stroke();
       target.context.beginPath();
-      if (selected === node) {
-        target.context.strokeStyle = "#ffffff";
-      } else if (node.shoot) {
-        target.context.strokeStyle = "#00ff00";
-      } else {
-        target.context.strokeStyle = "#ff0000";
-      }
+      target.context.strokeStyle = "#" +
+      (selected === node ? "ff" : "00") +
+      (node.shoot ? "ff" : "00") +
+      (node.backwards ? "ff" : "00");
       target.context.lineWidth = 5;
       const pos = target.viewport.fromViewport(node.position);
       arrow(target.context, pos, node.rotation);

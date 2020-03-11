@@ -43,6 +43,7 @@ export function openOptionPanel(configuring) {
   configuring.node.rotationElement = rotationInput;
   options.appendChild(rotationElement);
   options.appendChild(rotationInput);
+
   const shootDiv = document.createElement("label");
   shootDiv.className = "action input-container delete";
   const shootInput = document.createElement("input");
@@ -56,6 +57,21 @@ export function openOptionPanel(configuring) {
   shootDiv.appendChild(shootInput);
   shootDiv.appendChild(shootDisplay);
   options.appendChild(shootDiv);
+
+  const backwardsDiv = document.createElement("label");
+  backwardsDiv.className = "action input-container delete";
+  const backwardsInput = document.createElement("input");
+  backwardsInput.type = "checkbox";
+  backwardsInput.className = "hidden";
+  const backwardsDisplay = document.createElement("span");
+  backwardsDisplay.className = "input-display";
+  backwardsDisplay.innerText = "Toggle Direction";
+  backwardsInput.checked = configuring.node.backwards;
+  backwardsDisplay.addEventListener("mouseup", () => configuring.node.backwards = !backwardsInput.checked);
+  backwardsDiv.appendChild(backwardsInput);
+  backwardsDiv.appendChild(backwardsDisplay);
+  options.appendChild(backwardsDiv);
+
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "Delete";
   deleteButton.className = "action delete";
