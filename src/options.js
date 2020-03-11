@@ -77,6 +77,7 @@ export function openOptionPanel(configuring) {
   deleteButton.className = "action delete";
   deleteButton.addEventListener("mouseup", () => configuring.path.deleteNode(configuring.node));
   options.appendChild(deleteButton);
+
   const insertButton = document.createElement("button");
   insertButton.innerText = "Insert node before this node";
   insertButton.className = "action delete";

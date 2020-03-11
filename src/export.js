@@ -80,8 +80,11 @@ function generateAuto(format, project) {
     let currentRotation = 0;
     let currentPosition = new Vec2(0, 0);
     for (const node of path.nodes) {
-      let rotation = (Math.atan2(currentPosition.y-node.position.y, currentPosition.x-node.position.x) + Math.PI) /
-        units.radians.ratio * units[rotationUnit].ratio;
+      let rotation = (Math.atan2(currentPosition.y-node.position.y, currentPosition.x-node.position.x) + Math.PI);
+      if (node.backwards) {
+        rotation = (rotation+Math.PI/2)%Math.PI;
+      }
+      rotation = rotation / units.radians.ratio * units[rotationUnit].ratio;
       const lastRotation = currentRotation;
       currentRotation = rotation;
       if (format.relativeRotate) {
@@ -91,7 +94,10 @@ function generateAuto(format, project) {
         rotation *= -1;
       }
       let dist = Math.sqrt((currentPosition.x-node.position.x)**2 + (currentPosition.y-node.position.y)**2) * units.field.ratio;
-      if (!format.driveBackwardNegative) {
+      if (node.backwards) {
+        dist = -dist;
+      }
+      if (!format.driveBackwardNegitive) {
         dist = Math.abs(dist);
       }
       if (dist > 0) {
@@ -101,7 +107,7 @@ function generateAuto(format, project) {
       }
       if (!first) {
         writeCommand(format.rotateVerb, [{"type": rotationUnit, "value": rotation}]);
-        if (dist > 0) {
+        if (!node.backwards) {
           writeCommand(format.driveForwardVerb, [{"type": forwardUnit, "value": dist}]);
         } else {
           writeCommand(format.driveBackwardVerb, [{"type": backwardUnit, "value": dist}]);
