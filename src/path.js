@@ -45,6 +45,33 @@ export class Path {
     }
     return [closest, closestDist];
   }
+  findNode(node) {
+    let nodeIndex = 0;
+    for (const i in this.nodes) {
+      const n = this.nodes[i];
+      if (n === node) {
+        nodeIndex = i;
+        break;
+      }
+    }
+    return nodeIndex;
+  }
+  deleteNode(node) {
+    const nodeIndex = this.findNode(node);
+    this.nodes.splice(nodeIndex, 1);
+  }
+  insertNode(beforeNode) {
+    const nodeIndex = this.findNode(beforeNode);
+    if (nodeIndex > 0) {
+      const afterPosition = this.nodes[nodeIndex-1].position;
+      const beforePosition = beforeNode.position;
+      const middle = new Vec2((afterPosition.x+beforePosition.x)/2, (afterPosition.y+beforePosition.y)/2);
+      const newNode = new PathNode(middle, beforeNode.rotation);
+      this.nodes.splice(nodeIndex, 0, newNode);
+    } else {
+      alert("Can't insert a node before the first node!");
+    }
+  }
   draw(target, selected) {
     let first = true;
     target.context.beginPath();
