@@ -8,7 +8,6 @@ import { registerExportButtons } from "./export.js";
 import { registerOptionButtons } from "./options.js";
 
 /// Non-project specific stuff goes in this file, and a basic wrapper for easy canvas use.
-console.log("%cLook at my butiful loging!", "background: #ffff00; color: #0000ff; font-family: cursive; font-size: 31.7px");
 
 window.addEventListener("load", () => {
   const canvas = new RenderTarget(document.getElementById("canvas"));
