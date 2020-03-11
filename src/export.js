@@ -163,7 +163,8 @@ function saveProject(project) {
 
 export function registerExportButtons(project, updateProject) {
   document.getElementById("new-project").addEventListener("click", () => {
-    updateProject(new Project(project.mouseState, project.viewport));
+    project = new Project(project.mouseState, project.viewport);
+    updateProject(project);
   });
   document.getElementById("export").addEventListener("click", () => {
     const type = document.getElementById("type-selector").value;
