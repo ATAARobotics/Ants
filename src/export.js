@@ -82,7 +82,7 @@ function generateAuto(format, project) {
     for (const node of path.nodes) {
       let rotation = (Math.atan2(currentPosition.y-node.position.y, currentPosition.x-node.position.x) + Math.PI);
       if (node.backwards) {
-        rotation = (rotation+Math.PI/2)%Math.PI;
+        rotation = (rotation+Math.PI)%(Math.PI*2);
       }
       rotation = rotation / units.radians.ratio * units[rotationUnit].ratio;
       const lastRotation = currentRotation;
